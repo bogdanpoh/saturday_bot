@@ -1,7 +1,7 @@
 from datetime import date
 from services.course import CourseManager
 from services.date import DateManager
-from system.system_manager import SystemManager
+from system.manager import SystemManager
 from helpers.keyboards import Keyboards
 from helpers import constants
 
