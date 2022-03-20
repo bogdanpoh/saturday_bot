@@ -56,7 +56,8 @@ class DialogManager:
         try:
             calculated = 0
             action = ""
-            uah_value = float(message.text)
+            str_value = str(message.text).replace(",", ".")
+            uah_value = float(str_value)
 
             if self.currency_action == Keyboards.callback_buy:
                 calculated = self.currency.buy(float(uah_value))
