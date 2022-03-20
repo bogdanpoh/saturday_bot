@@ -27,13 +27,13 @@ class Currency(BaseModel):
 class CurrencyItem(BaseModel):
     name = ""
     value = 0
-    currency = None
+    currency_name = None
 
-    def __init__(self, name, value, currency):
+    def __init__(self, name, value, currency_name):
         self.name = name
         self.value = value
-        self.currency = currency
+        self.currency_name = currency_name
 
-    def info(self, new_line=False):
+    def info(self, currency, new_line=False):
         symbol = "\n" if new_line else ""
-        return f"{self.name}: {self.value} {self.currency.emoji} = {self.currency.buy(self.value)} UAH {symbol}"
+        return f"{self.name}: {self.value} {currency.emoji} = {currency.buy(self.value)} UAH {symbol}"

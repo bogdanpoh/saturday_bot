@@ -9,8 +9,10 @@ commands = [
 mac_os_identifier = "Darwin"
 
 currencies_url = "https://api.monobank.ua/bank/currency"
-currencies_name = {840: "USD", 978: "EUR", 980: "UAH", 985: "PLN", 643: "RUB"}
-currencies_emoji = {"USD": "💵", "EUR": "💶"}
+usd_name = "USD"
+euro_name = "EUR"
+currencies_code_name = {840: usd_name, 978: euro_name, 980: "UAH", 985: "PLN", 643: "RUB"}
+currencies_emoji = {usd_name: "💵", euro_name: "💶"}
 currencies_too_many_requests = "Занадто багато запитів до Monobank"
 currencies_choose = "Виберіть валюту"
 currency_sell = "Продаж"

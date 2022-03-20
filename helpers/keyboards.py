@@ -14,8 +14,14 @@ class Keyboards(object):
         markup = InlineKeyboardMarkup()
         markup.row_width = 2
         markup.add(
-            InlineKeyboardButton(f"USD {constants.currencies_emoji['USD']}", callback_data=Keyboards.callback_usd),
-            InlineKeyboardButton(f"EURO {constants.currencies_emoji['EUR']}", callback_data=Keyboards.callback_euro)
+            InlineKeyboardButton(
+                f"{constants.usd_name} {constants.currencies_emoji[f'{constants.usd_name}']}",
+                callback_data=Keyboards.callback_usd
+            ),
+            InlineKeyboardButton(
+                f"{constants.euro_name} {constants.currencies_emoji[f'{constants.euro_name}']}",
+                callback_data=Keyboards.callback_euro
+            )
         )
 
         return markup

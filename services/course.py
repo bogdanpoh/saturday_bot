@@ -2,14 +2,14 @@ import requests
 
 import config
 from helpers import constants
-from models.currency import Currency, CurrencyItem
+from models.currency import Currency
 
 
 class CourseManager(object):
 
     @staticmethod
     def format_code_currency(code):
-        for key, value in constants.currencies_name.items():
+        for key, value in constants.currencies_code_name.items():
             if key == code:
                 return value
         return None
@@ -69,24 +69,19 @@ class CourseManager(object):
         return f"{emoji}{symbol}{constants.currency_sell}: {sell}₴, {constants.currency_buy}: {buy}₴\n"
 
     @staticmethod
-    def get_info():
+    def get_info(currencies_item):
         info = ""
         currencies = CourseManager.get_currencies(echo=config.echo)
 
         if currencies:
-            usd = [currency for currency in currencies if currency.ccy == "USD"][0]
-            euro = [currency for currency in currencies if currency.ccy == "EUR"][0]
+            for currency in currencies:
+                info += CourseManager.format_currency(currency, new_line=True)
+                sorted_currencies_item = [item for item in currencies_item if item.currency_name == currency.ccy]
 
-            salary = CurrencyItem(name="Зарплата", value=constants.my_usd_salary, currency=usd)
-            apple_music = CurrencyItem(name="Підписка на Apple Music", value=constants.my_usd_apple_music_price,
-                                       currency=usd)
-            my_euro = CurrencyItem(name="Збереження", value=constants.my_euros, currency=euro)
+                for item in sorted_currencies_item:
+                    info += item.info(currency=currency, new_line=True)
 
-            info += CourseManager.format_currency(usd, new_line=True)
-            info += salary.info(new_line=True)
-            info += apple_music.info(new_line=True)
-            info += "\n" + CourseManager.format_currency(euro, new_line=True)
-            info += my_euro.info()
+                info += "\n"
         else:
             info = f"{constants.currencies_too_many_requests} {constants.bot_emoji}"
 

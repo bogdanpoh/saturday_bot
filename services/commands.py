@@ -1,4 +1,5 @@
 from datetime import date
+from models.currency import CurrencyItem
 from services.course import CourseManager
 from services.date import DateManager
 from system.manager import SystemManager
@@ -18,7 +19,24 @@ class CommandManager(object):
             self.bot.send_message(message.chat.id, text)
 
     def course(self, message):
-        info = CourseManager.get_info()
+        salary = CurrencyItem(
+            name="Зарплата",
+            value=constants.my_usd_salary,
+            currency_name=constants.usd_name
+        )
+        apple_music = CurrencyItem(
+            name="Підписка на Apple Music",
+            value=constants.my_usd_apple_music_price,
+            currency_name=constants.usd_name
+        )
+        my_euro = CurrencyItem(
+            name="Збереження",
+            value=constants.my_euros,
+            currency_name=constants.euro_name
+        )
+        currencies_item = [salary, apple_music, my_euro]
+
+        info = CourseManager.get_info(currencies_item=currencies_item)
         self.send_message(message, info)
 
     def salary(self, message):
