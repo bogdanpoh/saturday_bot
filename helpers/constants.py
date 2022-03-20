@@ -3,7 +3,8 @@ commands = [
     "salary",
     "currency",
     "shortcuts",
-    "volume"
+    "volume",
+    "weather"
 ]
 
 mac_os_identifier = "Darwin"
@@ -37,7 +38,13 @@ back = "Назад"
 time_format = "%H:%M:%S"
 send_time = "08:00:00"
 
+weather_city = "poltava"
+weather_lang = "uk"
+
 done_emoji = "✅"
 bot_emoji = "🤖"
 finger_down_emoji = "👇🏻"
 arrow_left_emoji = "↩️"
+day_emoji = "☀️"
+night_emoji = "🌙"
+cloud_emoji = "⛅️"

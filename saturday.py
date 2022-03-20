@@ -37,7 +37,8 @@ def command_handler(message):
         .case("salary", lambda: command_manager.salary(message=message))\
         .case("currency", lambda: command_manager.currency(message=message))\
         .case("shortcuts", lambda: command_manager.shortcuts(message=message))\
-        .case("volume", lambda: command_manager.volume(message=message))
+        .case("volume", lambda: command_manager.volume(message=message))\
+        .case("weather", lambda: command_manager.weather(message=message))
 
 
 # def send_news():

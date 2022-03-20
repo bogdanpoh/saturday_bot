@@ -2,6 +2,8 @@ from datetime import date
 from models.currency import CurrencyItem
 from services.course import CourseManager
 from services.date import DateManager
+from services.weather import WeatherManager
+from services import download
 from system.manager import SystemManager
 from helpers.keyboards import Keyboards
 from helpers import constants
@@ -74,3 +76,10 @@ class CommandManager(object):
             text = f"{constants.bot_emoji} This is don't MacOS"
 
         self.send_message(message=message, text=text, keyboard=keyboard)
+        
+    def weather(self, message):
+        weather_manager = WeatherManager()
+        weather = weather_manager.request()
+        info = weather.info()
+        image = download.fetch_image(weather.icon_url)
+        self.bot.send_photo(message.chat.id, image, caption=info)
