@@ -1,3 +1,4 @@
+import config
 from services.course import CourseManager
 from system.manager import SystemManager
 from helpers.keyboards import Keyboards
@@ -30,7 +31,7 @@ class DialogManager:
         keyboard = Keyboards.buy_sell_keyboard()
 
         if call.data == Keyboards.callback_usd or call.data == Keyboards.callback_euro:
-            currencies = course_manager.get_currencies(echo=True)
+            currencies = course_manager.get_currencies(echo=config.echo)
 
             if currencies:
                 self.currency = currencies[0 if call.data == Keyboards.callback_usd else 1]
