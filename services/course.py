@@ -64,7 +64,7 @@ class CourseManager(object):
         emoji = currency.emoji
         buy = currency.rate_buy
         sell = currency.rate_sell
-        symbol = '\n' if new_line else ' '
+        symbol = "\n" if new_line else " "
 
         return f"{emoji}{symbol}{constants.currency_sell}: {sell}₴, {constants.currency_buy}: {buy}₴\n"
 

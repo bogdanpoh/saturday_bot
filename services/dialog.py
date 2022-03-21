@@ -72,4 +72,4 @@ class DialogManager:
 
         except Exception as e:
             print(f"error: {e}")
-            self.bot.reply_to(message, f'{constants.bot_emoji} ooops')
+            self.bot.reply_to(message, f"{constants.bot_emoji} ooops")

@@ -61,5 +61,5 @@ def main():
         print(f"error: {error}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

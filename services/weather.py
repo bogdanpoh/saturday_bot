@@ -6,7 +6,7 @@ from models.weather import Weather
 
 class WeatherManager(object):
     url = f"http://api.weatherapi.com/v1/current.json"
-    payload = {'key': config.weather_api_key}
+    payload = {"key": config.weather_api_key}
 
     def __init__(self, city=None, lang=None):
         self.payload["q"] = constants.weather_city if not city else city
