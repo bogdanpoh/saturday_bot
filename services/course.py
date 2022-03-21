@@ -1,5 +1,4 @@
 import requests
-
 import config
 from helpers import constants
 from models.currency import Currency
@@ -44,7 +43,8 @@ class CourseManager(object):
 
         if echo:
             print(f"status code: {response.status_code}")
-            print(f"response: {response.json()}")
+            print(f"response:")
+            print(response.json())
 
         if response.status_code == 200:
             currencies = []
