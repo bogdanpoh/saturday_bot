@@ -1,14 +1,21 @@
 import os
-from platform import system
-from helpers import constants
+import platform
 import config
+from pynput.keyboard import Key, Controller
+from helpers import constants
+from helpers.switch import Switch
 
 
 class SystemManager:
 
     @staticmethod
     def is_mac_os():
-        return system() == constants.mac_os_identifier
+        return platform.system() == constants.mac_os_identifier
+
+    @staticmethod
+    def device_name() -> str:
+        name = platform.node().split(".")[0]
+        return name
 
     @staticmethod
     def list_shortcuts():
@@ -26,7 +33,49 @@ class SystemManager:
             os.system(f"echo {config.computer_password} | sudo -S {command}")
 
     @staticmethod
+    def sound_level() -> int:
+        if SystemManager.is_mac_os():
+            outpus = os.popen("osascript -e 'get volume settings'").readlines()[-1]
+            sound_level = outpus.split(",")[0].split(":")[-1]
+            return int(sound_level)
+
+    @staticmethod
     def set_volume(value):
         if SystemManager.is_mac_os():
             command = f"sudo osascript -e 'set volume {value}'"
             os.system(f"echo {config.computer_password} | sudo -S {command}")
+
+    @staticmethod
+    def battery_charg():
+        if SystemManager.is_mac_os():
+            outputs = os.popen("pmset -g batt").readlines()[-1]
+            battery_charg = outputs.split("\t")[-1].split(";")[0]
+            return battery_charg
+
+    # for use this command, need install https://github.com/nriley/brightness
+    @staticmethod
+    def brightness_level() -> int:
+        if SystemManager.is_mac_os():
+            outputs = os.popen("brightness -l").readlines()[1]
+            brightness_level = int(float(outputs.split(" ")[-1]) * 100)
+            return brightness_level
+
+    # for use this command, need install https://github.com/nriley/brightness
+    @staticmethod
+    def set_brightness(value):
+        if SystemManager.is_mac_os():
+            command = f"brightness {value}"
+            os.system(command)
+
+    # for user this commnad, need install library: pynput
+    @staticmethod
+    def press_key(key):
+        if SystemManager.is_mac_os():
+            keyboard = Controller()
+
+            Switch(key)\
+                .case("prev", lambda: (keyboard.press(Key.media_previous), keyboard.release(Key.media_previous)))\
+                .case("play", lambda: keyboard.press(Key.media_play_pause))\
+                .case("next", lambda: (keyboard.press(Key.media_next), keyboard.release(Key.media_next)))\
+                .case("left", lambda: keyboard.press(Key.left))\
+                .case("right", lambda: keyboard.press(Key.right))
