@@ -24,17 +24,20 @@ class CommandManager(object):
         salary = CurrencyItem(
             name="Зарплата",
             value=constants.my_usd_salary,
-            currency_name=constants.usd_name
+            currency_name=constants.usd_name,
+            type="sell"
         )
         apple_music = CurrencyItem(
             name="Підписка на Apple Music",
             value=constants.my_usd_apple_music_price,
-            currency_name=constants.usd_name
+            currency_name=constants.usd_name,
+            type="sell"
         )
         my_euro = CurrencyItem(
             name="Збереження",
             value=constants.my_euros,
-            currency_name=constants.euro_name
+            currency_name=constants.euro_name,
+            type="buy"
         )
         currencies_item = [salary, apple_music, my_euro]
 

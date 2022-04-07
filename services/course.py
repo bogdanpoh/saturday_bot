@@ -62,8 +62,8 @@ class CourseManager(object):
     @staticmethod
     def format_currency(currency, new_line=False):
         emoji = currency.emoji
-        buy = currency.rate_buy
-        sell = currency.rate_sell
+        buy = currency.rate_buy_short()
+        sell = currency.rate_sell_short()
         symbol = "\n" if new_line else " "
 
         return f"{emoji}{symbol}{constants.currency_sell}: {sell}₴, {constants.currency_buy}: {buy}₴\n"
