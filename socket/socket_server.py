@@ -1,6 +1,5 @@
 import socket
-import json
-from commands import ServerCommands
+from server.commands import ServerCommands
 from helpers.switch import Switch
 
 UDP_MAX_SIZE = 65535

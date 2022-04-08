@@ -1,16 +1,7 @@
-import socket
-import json
 from system.manager import SystemManager
 
 
 class ServerCommands(object):
-
-    # def __init__(self, connection: socket, address: str):
-    #     self.socket = connection
-    #     self.address = address
-
-    # def send(self, data):
-    #     self.socket.sendto(bytes(data, encoding="utf-8"), self.address)
 
     @staticmethod
     def list_shortcuts():
@@ -20,8 +11,6 @@ class ServerCommands(object):
             "shortcuts": list_shortcuts
         }
 
-        # data_response = json.dumps(response)
-        # self.send(data_response)
         return response
 
     @staticmethod
@@ -41,8 +30,6 @@ class ServerCommands(object):
             "brightness_level": brightness_level
         }
 
-        # data_response = json.dumps(response)
-        # self.send(response)
         return response
 
     @staticmethod
