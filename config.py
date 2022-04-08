@@ -1,4 +1,5 @@
 token = ""
+test_token = ""
 computer_password = ""
 
 # weather api, link: https://www.weatherapi.com
@@ -7,4 +8,7 @@ weather_image_path = "downloads/image.jpg"
 
 locale_dev = "uk_UA.UTF-8"
 locale_production = "uk_UA.utf8"
-echo = False
+echo = True
+
+server_host = ""
+server_port = 5000
