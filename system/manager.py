@@ -13,16 +13,19 @@ class SystemManager:
         return platform.system() == constants.mac_os_identifier
 
     @staticmethod
-    def device_name() -> str:
+    def device_name():
         name = platform.node().split(".")[0]
-        return name
+        if name:
+            return name
+        else:
+            return None
 
     @staticmethod
     def list_shortcuts():
         if SystemManager.is_mac_os():
             outputs = os.popen("Shortcuts list").readlines()
             shortcuts = map(lambda shortcut: str(shortcut).replace("\n", ""), outputs)
-            return shortcuts
+            return list(shortcuts)
         else:
             return None
 
@@ -33,11 +36,13 @@ class SystemManager:
             os.system(f"echo {config.computer_password} | sudo -S {command}")
 
     @staticmethod
-    def sound_level() -> int:
+    def sound_level():
         if SystemManager.is_mac_os():
             outpus = os.popen("osascript -e 'get volume settings'").readlines()[-1]
             sound_level = outpus.split(",")[0].split(":")[-1]
             return int(sound_level)
+        else:
+            return None
 
     @staticmethod
     def set_volume(value):
@@ -51,14 +56,18 @@ class SystemManager:
             outputs = os.popen("pmset -g batt").readlines()[-1]
             battery_charg = outputs.split("\t")[-1].split(";")[0]
             return battery_charg
+        else:
+            return None
 
     # for use this command, need install https://github.com/nriley/brightness
     @staticmethod
-    def brightness_level() -> int:
+    def brightness_level():
         if SystemManager.is_mac_os():
             outputs = os.popen("brightness -l").readlines()[1]
             brightness_level = int(float(outputs.split(" ")[-1]) * 100)
             return brightness_level
+        else:
+            return None
 
     # for use this command, need install https://github.com/nriley/brightness
     @staticmethod

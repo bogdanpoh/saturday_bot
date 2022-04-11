@@ -9,10 +9,17 @@ def make_json_message(text: str):
     return jsonify({"message": f"{text}"})
 
 
+def make_json_error(text: str):
+    return jsonify({"error": f"{text}"})
+
+
 @app.route("/system", methods=["GET"])
 def system():
     info = ServerCommands.system()
-    return jsonify(info)
+    if info:
+        return jsonify(info)
+    else:
+        return make_json_error("don't found system info")
 
 
 @app.route("/shortcuts", methods=["GET"])

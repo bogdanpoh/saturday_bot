@@ -5,13 +5,13 @@ class ServerCommands(object):
 
     @staticmethod
     def list_shortcuts():
-        list_shortcuts = list(SystemManager.list_shortcuts())
-        response = {
-            "count": len(list_shortcuts),
-            "shortcuts": list_shortcuts
-        }
+        list_shortcuts = SystemManager.list_shortcuts()
 
-        return response
+        if list_shortcuts:
+            response = {"count": len(list_shortcuts), "shortcuts": list_shortcuts}
+            return response
+        else:
+            return None
 
     @staticmethod
     def run_shortcut(shortcut):
@@ -23,14 +23,17 @@ class ServerCommands(object):
         battery_charg = SystemManager.battery_charg()
         sound_level = SystemManager.sound_level()
         brightness_level = SystemManager.brightness_level()
-        response = {
-            "device_name": device_name,
-            "battery_charg": battery_charg,
-            "sound_level": sound_level,
-            "brightness_level": brightness_level
-        }
 
-        return response
+        if device_name and battery_charg and sound_level and brightness_level:
+            response = {
+                "device_name": device_name,
+                "battery_charg": battery_charg,
+                "sound_level": sound_level,
+                "brightness_level": brightness_level
+            }
+            return response
+        else:
+            return None
 
     @staticmethod
     def set_volume(value):
