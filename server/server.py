@@ -38,7 +38,7 @@ def brightness_level():
     if brightness is not None:
         ServerCommands.set_brightness(brightness)
 
-    return make_json_message("Set brightness: {brightness}")
+    return make_json_message(f"Set brightness: {brightness}")
 
 
 @app.route("/media", methods=["POST"])
