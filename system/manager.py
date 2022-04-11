@@ -78,4 +78,5 @@ class SystemManager:
                 .case("play", lambda: keyboard.press(Key.media_play_pause))\
                 .case("next", lambda: (keyboard.press(Key.media_next), keyboard.release(Key.media_next)))\
                 .case("left", lambda: keyboard.press(Key.left))\
+                .case("space", lambda: keyboard.press(Key.space))\
                 .case("right", lambda: keyboard.press(Key.right))
