@@ -28,6 +28,16 @@ def shortcuts():
     return jsonify(info)
 
 
+@app.route("/applications", methods=["GET"])
+def applications():
+    info = ServerCommands.list_applications()
+
+    if info:
+        return jsonify(info)
+    else:
+        return make_json_error("don't found applications")
+
+
 @app.route("/sound", methods=["POST"])
 def sound():
     json = request.get_json(force=True)
@@ -68,6 +78,17 @@ def run_shortcuts():
         ServerCommands.run_shortcut(shortcut)
 
     return jsonify({"message": f"Run shortcut: {shortcut}"})
+
+
+@app.route("/applications", methods=["POST"])
+def close_application():
+    json = request.get_json(force=True)
+    application = json["application"]
+
+    if application:
+        ServerCommands.close_application(application)
+
+    return make_json_message(f"close application: {application}")
 
 
 if __name__ == '__main__':

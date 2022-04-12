@@ -46,3 +46,17 @@ class ServerCommands(object):
     @staticmethod
     def press_key(key):
         SystemManager.press_key(key)
+
+    @staticmethod
+    def list_applications():
+        applications = SystemManager.list_application()
+
+        if applications:
+            response = {"count": len(applications), "applications": applications}
+            return response
+        else:
+            return None
+
+    @staticmethod
+    def close_application(application):
+        SystemManager.close_application(application)

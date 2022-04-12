@@ -89,3 +89,19 @@ class SystemManager:
                 .case("left", lambda: keyboard.press(Key.left))\
                 .case("space", lambda: keyboard.press(Key.space))\
                 .case("right", lambda: keyboard.press(Key.right))
+
+    @staticmethod
+    def list_application():
+        if SystemManager.is_mac_os():
+            command = "osascript -e 'tell application \"System Events\" to get name of (processes where background only is false)'"
+            outputs = os.popen(command).readlines()[-1].split(", ")
+            applications = map(lambda application: str(application).replace("\n", ""), outputs)
+            return list(applications)
+        else:
+            return None
+
+    @staticmethod
+    def close_application(application):
+        if SystemManager.is_mac_os():
+            command = f"pkill -9 {application}"
+            os.system(command)
