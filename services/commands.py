@@ -31,7 +31,7 @@ class CommandManager(object):
             name="Підписка на Apple Music",
             value=constants.my_usd_apple_music_price,
             currency_name=constants.usd_name,
-            type="sell"
+            type="buy"
         )
         my_euro = CurrencyItem(
             name="Збереження",

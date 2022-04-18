@@ -50,6 +50,6 @@ class CurrencyItem(BaseModel):
 
     def info(self, currency, new_line=False):
         symbol = "\n" if new_line else ""
-        value = currency.buy(self.value) if type == "buy" else currency.sell(self.value)
+        value = currency.buy(self.value) if self.type == "buy" else currency.sell(self.value)
         money = Currency.round_half_up(value, 2)
         return f"{self.name}: {self.value} {currency.emoji} = {money} UAH {symbol}"
