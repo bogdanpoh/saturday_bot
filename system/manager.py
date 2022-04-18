@@ -1,7 +1,6 @@
 import os
 import platform
 import config
-from pynput.keyboard import Key, Controller
 from helpers import constants
 from helpers.switch import Switch
 
@@ -66,16 +65,3 @@ class SystemManager:
         if SystemManager.is_mac_os():
             command = f"brightness {value}"
             os.system(command)
-
-    # for user this commnad, need install library: pynput
-    @staticmethod
-    def press_key(key):
-        if SystemManager.is_mac_os():
-            keyboard = Controller()
-
-            Switch(key)\
-                .case("prev", lambda: (keyboard.press(Key.media_previous), keyboard.release(Key.media_previous)))\
-                .case("play", lambda: keyboard.press(Key.media_play_pause))\
-                .case("next", lambda: (keyboard.press(Key.media_next), keyboard.release(Key.media_next)))\
-                .case("left", lambda: keyboard.press(Key.left))\
-                .case("right", lambda: keyboard.press(Key.right))
