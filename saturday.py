@@ -10,7 +10,7 @@ from helpers.switch import Switch
 # from threading import Thread
 
 
-bot = TeleBot(token=config.test_token)
+bot = TeleBot(token=config.token)
 command_manager = CommandManager(bot=bot)
 dialog_manager = DialogManager(bot=bot)
 currency_choose = None
