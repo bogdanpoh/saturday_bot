@@ -143,15 +143,15 @@ class CourseManager(object):
         info = ""
         currencies = []
         mono_currencies = CourseManager.get_mono_currencies(echo=config.echo)
-        alfa_currencies = CourseManager.get_alfa_currencies(echo=config.echo)
+        # alfa_currencies = CourseManager.get_alfa_currencies(echo=config.echo)
         privat_currencies = CourseManager.get_private_currencies(echo=config.echo)
 
         if mono_currencies:
             for currency in mono_currencies:
                 currencies.append(currency)
 
-        for currency in alfa_currencies:
-            currencies.append(currency)
+        # for currency in alfa_currencies:
+        #     currencies.append(currency)
 
         for currency in privat_currencies:
             currencies.append(currency)
