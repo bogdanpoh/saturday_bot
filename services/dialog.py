@@ -31,7 +31,7 @@ class DialogManager:
         keyboard = Keyboards.buy_sell_keyboard()
 
         if call.data == Keyboards.callback_usd or call.data == Keyboards.callback_euro:
-            currencies = course_manager.get_currencies(echo=config.echo)
+            currencies = course_manager.get_mono_currencies(echo=config.echo)
 
             if currencies:
                 self.currency = currencies[0 if call.data == Keyboards.callback_usd else 1]
@@ -67,7 +67,7 @@ class DialogManager:
                 calculated = self.currency.sell(float(uah_value))
                 action = constants.currency_sell
 
-            text = f"{action} {self.currency.emoji} {uah_value} = {'%.2f' % calculated} UAH"
+            text = f"{action} {self.currency.emoji} {uah_value} = {'%.2f' % calculated} {constants.ukr_name}"
             self.bot.send_message(message.chat.id, text)
 
         except Exception as e:

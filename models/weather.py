@@ -22,10 +22,6 @@ class Weather(BaseModel):
         self.icon_url = f"http://{icon}"
         self.cloud = current["cloud"]
 
-        from pprint import pprint
-
-        pprint(data)
-
     def info(self):
         return f"""
 {self.country}, {self.city_name}, {self.region}

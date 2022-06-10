@@ -25,22 +25,25 @@ class CommandManager(object):
             name="Зарплата",
             value=constants.my_usd_salary,
             currency_name=constants.usd_name,
-            type="sell"
+            type="sell",
+            bank_name=constants.privatbank_name
         )
         apple_music = CurrencyItem(
             name="Підписка на Apple Music",
             value=constants.my_usd_apple_music_price,
             currency_name=constants.usd_name,
-            type="buy"
+            type="buy",
+            bank_name=constants.mono_name
         )
         my_euro = CurrencyItem(
             name="Збереження",
             value=constants.my_euros,
             currency_name=constants.euro_name,
-            type="buy"
+            type="sell",
+            bank_name=constants.mono_name
         )
-        currencies_item = [salary, apple_music, my_euro]
 
+        currencies_item = [salary, apple_music, my_euro]
         info = CourseManager.get_info(currencies_item=currencies_item)
         self.send_message(message, info)
 
