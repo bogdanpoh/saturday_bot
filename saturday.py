@@ -41,6 +41,34 @@ def command_handler(message):
         .case("weather", lambda: command_manager.weather(message=message))
 
 
+@bot.message_handler(func=lambda message: True, content_types=["voice"])
+def default_command(message):
+    file_info = bot.get_file(message.voice.file_id)
+    downloaded_file = bot.download_file(file_info.file_path)
+
+    # print(message)
+    from os import path
+    from pydub import AudioSegment
+    import speech_recognition as sr
+
+    r = sr.Recognizer()
+    path_to_voice_file = path.join("downloads", f"voice.ogg")
+    path_to_transcription_file = path.join("downloads", "transcription.wav")
+
+    with open(path_to_voice_file, "wb") as file:
+        file.write(downloaded_file)
+
+        sound = AudioSegment.from_ogg(path_to_voice_file)
+        sound.export(path_to_transcription_file, format="wav")
+
+    with sr.AudioFile(path_to_transcription_file) as source:
+        audio = r.record(source)
+        text = r.recognize_google(audio, language="uk_UA")
+        print(f"user say: {text}")
+
+        bot.reply_to(message, text)
+
+
 # def send_news():
 #     date_manager = DateManager(date_from=date.today())
 #
