@@ -27,7 +27,7 @@ privatbank_name = "Privat Bank"
 alfabank_name = "Alfa Bank"
 
 my_euros = float(50)
-my_usd_salary = float(1000)
+my_usd_salary = float(1250)
 my_usd_apple_music_price = float(2.49)
 
 date_format = "%d.%m.%Y"
