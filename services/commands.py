@@ -21,13 +21,22 @@ class CommandManager(object):
             self.bot.send_message(message.chat.id, text)
 
     def course(self, message):
-        salary = CurrencyItem(
-            name="Зарплата",
+        salary_privat = CurrencyItem(
+            name=f"Зарплата ({constants.privatbank_name})",
             value=constants.my_usd_salary,
             currency_name=constants.usd_name,
             type="sell",
             bank_name=constants.privatbank_name
         )
+
+        salary_alfabank = CurrencyItem(
+            name=f"Зарплата ({constants.alfabank_name})",
+            value=constants.my_usd_salary,
+            currency_name=constants.usd_name,
+            type="sell",
+            bank_name=constants.alfabank_name
+        )
+
         apple_music = CurrencyItem(
             name="Підписка на Apple Music",
             value=constants.my_usd_apple_music_price,
@@ -43,7 +52,7 @@ class CommandManager(object):
             bank_name=constants.mono_name
         )
 
-        currencies_item = [salary, apple_music, my_euro]
+        currencies_item = [salary_privat, salary_alfabank, apple_music, my_euro]
         info = CourseManager.get_info(currencies_item=currencies_item)
         self.send_message(message, info)
 
