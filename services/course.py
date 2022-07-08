@@ -98,7 +98,7 @@ class CourseManager(object):
             currencies = []
             emoji = CourseManager.format_emoji_currency(constants.usd_name)
             text = str(response.text)
-            start_index = text.find("department:[{label:U")
+            start_index = text.find("department:[{label:")
             text_with_course = text[start_index: start_index + 100]
             array_with_course = text_with_course.split("\"")
 
@@ -143,15 +143,15 @@ class CourseManager(object):
         info = ""
         currencies = []
         mono_currencies = CourseManager.get_mono_currencies(echo=config.echo)
-        # alfa_currencies = CourseManager.get_alfa_currencies(echo=config.echo)
+        alfa_currencies = CourseManager.get_alfa_currencies(echo=config.echo)
         privat_currencies = CourseManager.get_private_currencies(echo=config.echo)
 
         if mono_currencies:
             for currency in mono_currencies:
                 currencies.append(currency)
 
-        # for currency in alfa_currencies:
-        #     currencies.append(currency)
+        for currency in alfa_currencies:
+            currencies.append(currency)
 
         for currency in privat_currencies:
             currencies.append(currency)
