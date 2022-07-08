@@ -89,10 +89,10 @@ class CourseManager(object):
     def get_alfa_currencies(echo=False) -> [Currency]:
         response = requests.get("https://alfabank.ua/currency-exchange")
 
-        if echo:
-            print(f"status code: {response.status_code}")
-            print(f"response:")
-            print(response.json())
+        # if echo:
+        #     print(f"status code: {response.status_code}")
+        #     print(f"response:")
+        #     print(response.json())
 
         if response.status_code == 200:
             currencies = []
