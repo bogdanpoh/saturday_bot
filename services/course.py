@@ -98,12 +98,18 @@ class CourseManager(object):
             currencies = []
             emoji = CourseManager.format_emoji_currency(constants.usd_name)
             text = str(response.text)
-            start_index = text.find("department:[{label:")
-            text_with_course = text[start_index: start_index + 100]
-            array_with_course = text_with_course.split("\"")
 
-            usd_buy = float(array_with_course[1])
-            usd_sell = float(array_with_course[3])
+            start_index_buy = text.find("\"USD\",\"")
+            array_with_course_buy = text[start_index_buy: start_index_buy + 30].split(",")
+            usd_buy_str = array_with_course_buy[1].replace("\"", "")
+            
+            start_index_sell = text.find("department:[{label:")
+            array_with_course_sell = text[start_index_sell: start_index_sell + 100].split(",")
+            usd_sell_str = str(array_with_course_sell[4].split("\"")[1])
+
+            usd_buy = float(usd_buy_str) if usd_buy_str else float(0)
+            usd_sell = float(usd_sell_str) if usd_sell_str else float(0)
+
             usd_currency = Currency(
                 constants.usd_name,
                 base_ccy=constants.ukr_name,
