@@ -8,6 +8,8 @@ commands = [
 ]
 
 mac_os_identifier = "Darwin"
+admin_chat_identifier = 330926012
+admin_1_chat_identifier = 928113498
 
 currencies_url = "https://api.monobank.ua/bank/currency"
 usd_name = "USD"
@@ -54,3 +56,6 @@ arrow_left_emoji = "↩️"
 day_emoji = "☀️"
 night_emoji = "🌙"
 cloud_emoji = "⛅️"
+smile_teal_emoji = "🥲"
+
+sorry = f"Sorry {smile_teal_emoji}"

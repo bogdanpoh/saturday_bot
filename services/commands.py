@@ -44,6 +44,7 @@ class CommandManager(object):
             type="buy",
             bank_name=constants.mono_name
         )
+
         my_euro = CurrencyItem(
             name="Збереження",
             value=constants.my_euros,
@@ -52,16 +53,23 @@ class CommandManager(object):
             bank_name=constants.mono_name
         )
 
-        currencies_item = [salary_privat, salary_alfabank, apple_music, my_euro]
-        info = CourseManager.get_info(currencies_item=currencies_item)
+        info = constants.sorry
+
+        if SystemManager.is_admin(message):
+            currencies_item = [salary_privat, salary_alfabank, apple_music, my_euro]
+            info = CourseManager.get_info(currencies_item=currencies_item)
+
         self.send_message(message, info)
 
     def salary(self, message):
-        use_dev_locale = SystemManager.is_mac_os()
-        date_manager = DateManager(date_from=date.today(), dev_locale=use_dev_locale)
-        currencies_info = date_manager.get_info()
+        info = constants.sorry
 
-        self.send_message(message, currencies_info)
+        if SystemManager.is_admin(message):
+            use_dev_locale = SystemManager.is_mac_os()
+            date_manager = DateManager(date_from=date.today(), dev_locale=use_dev_locale)
+            info = date_manager.get_info()
+
+        self.send_message(message, info)
 
     def currency(self, message):
         text = f"{constants.currencies_choose} {constants.finger_down_emoji}"

@@ -65,3 +65,10 @@ class SystemManager:
         if SystemManager.is_mac_os():
             command = f"brightness {value}"
             os.system(command)
+
+    @staticmethod
+    def is_admin(message) -> bool:
+        is_admin = message.chat.id == constants.admin_chat_identifier or\
+                   message.chat.id == constants.admin_1_chat_identifier
+
+        return is_admin
